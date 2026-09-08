@@ -1,0 +1,16 @@
+<svg viewBox='0 0 200 200' fill='none' xmlns='http://www.w3.org/2000/svg' class='motif-svg'>
+  <!-- Geometric Streetwear Wolf Silhouette -->
+  <path d='M100 25 L130 65 L165 45 L150 95 L175 115 L145 130 L155 165 L100 185 L45 165 L55 130 L25 115 L50 95 L35 45 L70 65 Z' stroke='currentColor' stroke-width='3' stroke-linejoin='round' fill='currentColor' fill-opacity='0.08'/>
+  <!-- Inner Facets -->
+  <polygon points='100,25 100,85 70,65' stroke='currentColor' stroke-width='2' fill='none'/>
+  <polygon points='100,25 100,85 130,65' stroke='currentColor' stroke-width='2' fill='none'/>
+  <polygon points='100,85 125,120 100,145' stroke='currentColor' stroke-width='2' fill='currentColor' fill-opacity='0.15'/>
+  <polygon points='100,85 75,120 100,145' stroke='currentColor' stroke-width='2' fill='currentColor' fill-opacity='0.15'/>
+  <polygon points='75,120 100,145 100,185 45,165' stroke='currentColor' stroke-width='2' fill='none'/>
+  <polygon points='125,120 100,145 100,185 155,165' stroke='currentColor' stroke-width='2' fill='none'/>
+  <!-- Cyber Eyes -->
+  <polygon points='80,95 92,98 84,103' fill='currentColor'/>
+  <polygon points='120,95 108,98 116,103' fill='currentColor'/>
+  <!-- Snout / Nose -->
+  <polygon points='96,138 104,138 100,144' fill='currentColor'/>
+</svg>

@@ -1,0 +1,17 @@
+<svg viewBox='0 0 200 200' fill='none' xmlns='http://www.w3.org/2000/svg' class='motif-svg'>
+  <circle cx='100' cy='100' r='90' stroke='currentColor' stroke-width='1.5' stroke-dasharray='4 4' opacity='0.4'/>
+  <circle cx='100' cy='100' r='75' stroke='currentColor' stroke-width='2' opacity='0.7'/>
+  <!-- Astronaut Helmet Visor -->
+  <path d='M65 85 C65 60, 135 60, 135 85 C135 118, 122 135, 100 135 C78 135, 65 118, 65 85 Z' fill='currentColor' fill-opacity='0.15' stroke='currentColor' stroke-width='3.5'/>
+  <path d='M75 80 Q100 70 125 80 Q120 105 100 115 Q80 105 75 80 Z' fill='currentColor' fill-opacity='0.25' stroke='currentColor' stroke-width='2'/>
+  <!-- Visor reflection streak -->
+  <path d='M82 82 Q95 76 112 80' stroke='currentColor' stroke-width='3' stroke-linecap='round' opacity='0.8'/>
+  <!-- Backpack / Collar base -->
+  <path d='M50 148 C50 135, 65 130, 80 135 L85 155 L115 155 L120 135 C135 130, 150 135, 150 148 L155 175 L45 175 Z' stroke='currentColor' stroke-width='3' fill='none'/>
+  <!-- Orbit Ring -->
+  <ellipse cx='100' cy='100' rx='98' ry='32' transform='rotate(-25 100 100)' stroke='currentColor' stroke-width='2.5' opacity='0.85'/>
+  <!-- Small Star Accents -->
+  <polygon points='100,22 103,30 111,33 103,36 100,44 97,36 89,33 97,30' fill='currentColor'/>
+  <polygon points='165,130 167,135 172,137 167,139 165,144 163,139 158,137 163,135' fill='currentColor'/>
+  <polygon points='35,70 37,74 41,75 37,77 35,81 33,77 29,75 33,74' fill='currentColor'/>
+</svg>

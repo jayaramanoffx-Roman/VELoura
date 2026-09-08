@@ -1,0 +1,20 @@
+<svg viewBox='0 0 200 200' fill='none' xmlns='http://www.w3.org/2000/svg' class='motif-svg'>
+  <circle cx='100' cy='100' r='88' stroke='currentColor' stroke-width='2' opacity='0.3'/>
+  <!-- Rising Sun -->
+  <circle cx='100' cy='82' r='38' fill='currentColor' fill-opacity='0.18'/>
+  <!-- Majestic Mountain Range -->
+  <polygon points='100,52 145,145 55,145' stroke='currentColor' stroke-width='3' fill='currentColor' fill-opacity='0.1'/>
+  <polygon points='100,52 100,145 145,145' fill='currentColor' fill-opacity='0.2'/>
+  <!-- Snow Cap Ridgeline -->
+  <path d='M100 52 L85 85 L95 90 L100 85 L108 92 L120 85 Z' fill='currentColor' fill-opacity='0.4'/>
+  <!-- Secondary Peaks -->
+  <polygon points='55,95 85,145 25,145' stroke='currentColor' stroke-width='2' fill='none'/>
+  <polygon points='145,98 175,145 115,145' stroke='currentColor' stroke-width='2' fill='none'/>
+  <!-- Fine Compass Crosshair -->
+  <line x1='100' y1='6' x2='100' y2='20' stroke='currentColor' stroke-width='2.5'/>
+  <line x1='100' y1='180' x2='100' y2='194' stroke='currentColor' stroke-width='2.5'/>
+  <line x1='6' y1='100' x2='20' y2='100' stroke='currentColor' stroke-width='2.5'/>
+  <line x1='180' y1='100' x2='194' y2='100' stroke='currentColor' stroke-width='2.5'/>
+  <!-- Horizon Line -->
+  <line x1='20' y1='145' x2='180' y2='145' stroke='currentColor' stroke-width='2'/>
+</svg>
