@@ -312,6 +312,17 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: space-between;
   height: 74px;
+  position: relative;
+}
+
+.desktop-nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+  z-index: 5;
 }
 
 .brand-logo-wrap {
@@ -1572,6 +1583,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* --- 1. Large Tablets & Small Laptops (<= 1100px) --- */
 @media (max-width: 1100px) {
+  .nav-links {
+    gap: 18px;
+  }
+
   .products-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 22px;

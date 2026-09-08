@@ -75,6 +75,14 @@ function initCatalogue() {
       state.searchQuery = e.target.value.toLowerCase().trim();
       renderProducts();
     });
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        searchInput.value = '';
+        state.searchQuery = '';
+        renderProducts();
+        searchInput.blur();
+      }
+    });
   }
 
   // Sort Select
@@ -447,15 +455,34 @@ function updateTshirtMockup() {
   }
   
   // Vector Graphic contrast filter
-  const graphicFilter = isLight 
-    ? "brightness(0) drop-shadow(0 1px 3px rgba(0,0,0,0.2))" 
-    : "brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.5))";
+  const isSvg = state.studio.graphic && state.studio.graphic.endsWith('.svg');
+  const graphicFilter = isSvg 
+    ? (isLight 
+        ? "brightness(0) drop-shadow(0 1px 3px rgba(0,0,0,0.2))" 
+        : "brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.5))")
+    : "drop-shadow(0 2px 8px rgba(0,0,0,0.3))";
   
   if (liveGraphic) {
     liveGraphic.style.filter = graphicFilter;
   }
   if (liveQr) {
-    liveQr.style.filter = graphicFilter;
+    liveQr.style.filter = isLight 
+      ? "brightness(0) drop-shadow(0 1px 3px rgba(0,0,0,0.2))" 
+      : "brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.5))";
+  }
+}
+
+// Modal Background Scroll Lock Utility
+function setBodyScrollLock(isLocked) {
+  if (isLocked) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    setTimeout(() => {
+      const anyActive = document.querySelector('.modal-wrapper.active, .cart-drawer.active');
+      if (!anyActive) {
+        document.body.style.overflow = '';
+      }
+    }, 50);
   }
 }
 
@@ -467,6 +494,7 @@ function initCart() {
   const closeBtn = document.getElementById('closeCartBtn');
   const backdrop = document.getElementById('drawerBackdrop');
   const applyCouponBtn = document.getElementById('applyCouponBtn');
+  const couponInput = document.getElementById('couponCodeInput');
   const checkoutBtn = document.getElementById('proceedToCheckoutBtn');
 
   if (triggerBtn) triggerBtn.addEventListener('click', openCartDrawer);
@@ -475,6 +503,15 @@ function initCart() {
 
   if (applyCouponBtn) {
     applyCouponBtn.addEventListener('click', applyCoupon);
+  }
+
+  if (couponInput) {
+    couponInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        applyCoupon();
+      }
+    });
   }
 
   if (checkoutBtn) {
@@ -492,12 +529,14 @@ function initCart() {
 function openCartDrawer() {
   document.getElementById('cartDrawer')?.classList.add('active');
   document.getElementById('drawerBackdrop')?.classList.add('active');
+  setBodyScrollLock(true);
   renderCart();
 }
 
 function closeCartDrawer() {
   document.getElementById('cartDrawer')?.classList.remove('active');
   document.getElementById('drawerBackdrop')?.classList.remove('active');
+  setBodyScrollLock(false);
 }
 
 function addToCart(product, size = 'M', quantity = 1) {
@@ -836,6 +875,7 @@ function openQuickView(productId) {
   `;
 
   modal.classList.add('active');
+  setBodyScrollLock(true);
   if (window.lucide) lucide.createIcons();
 
   // Switch image between photo and PDF scan
@@ -888,6 +928,7 @@ function openQuickView(productId) {
   // Close
   document.getElementById('closeQuickViewBtn')?.addEventListener('click', () => {
     modal.classList.remove('active');
+    setBodyScrollLock(false);
   });
 }
 
@@ -949,12 +990,14 @@ function openCheckoutModal() {
   }
 
   modal.classList.add('active');
+  setBodyScrollLock(true);
 }
 
 function initEventListeners() {
   // Close Checkout Modal
   document.getElementById('closeCheckoutBtn')?.addEventListener('click', () => {
     document.getElementById('checkoutModal')?.classList.remove('active');
+    setBodyScrollLock(false);
   });
 
   // Place Order Submit
@@ -977,16 +1020,19 @@ function initEventListeners() {
   // Done shopping
   document.getElementById('doneShoppingBtn')?.addEventListener('click', () => {
     document.getElementById('checkoutModal')?.classList.remove('active');
+    setBodyScrollLock(false);
   });
 
   // Size guide close
   document.getElementById('closeSizeGuideBtn')?.addEventListener('click', () => {
     document.getElementById('sizeGuideModal')?.classList.remove('active');
+    setBodyScrollLock(false);
   });
 
   // Open size guide from studio
   document.getElementById('openSizeGuideBtn')?.addEventListener('click', () => {
     document.getElementById('sizeGuideModal')?.classList.add('active');
+    setBodyScrollLock(true);
   });
 
   // Dynamic Visibility of Nav Search Icon: Hide when page search target is in view
@@ -1057,6 +1103,7 @@ function initEventListeners() {
     modal?.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.classList.remove('active');
+        setBodyScrollLock(false);
       }
     });
   });
@@ -1066,6 +1113,7 @@ function initEventListeners() {
     if (e.key === 'Escape') {
       document.querySelectorAll('.modal-wrapper.active').forEach(m => m.classList.remove('active'));
       closeCartDrawer();
+      setBodyScrollLock(false);
     }
   });
 

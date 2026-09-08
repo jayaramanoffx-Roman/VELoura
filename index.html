@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=12">
+  <link rel="stylesheet" href="styles.css?v=14">
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -61,15 +61,15 @@
     <div class="container nav-inner">
       <!-- Brand Logo -->
       <a href="#" class="brand-logo-wrap" title="VELoura Home">
-        <img src="assets/logo.png?v=12" alt="VELoura Logo" class="brand-logo-img">
+        <img src="assets/logo.png?v=14" alt="VELoura Logo" class="brand-logo-img">
         <div class="brand-text-col">
           <span class="brand-title">VELOURA</span>
           <span class="brand-subline">Made to Feel Like You</span>
         </div>
       </a>
 
-      <!-- Navigation Links -->
-      <nav>
+      <!-- Navigation Links (Centered & Rock-Solid Stationary) -->
+      <nav class="desktop-nav">
         <ul class="nav-links">
           <li><a href="#drops" class="active">Collection</a></li>
           <li><a href="#studio">Studio Customizer</a></li>
@@ -397,7 +397,7 @@
       <div class="footer-top-grid">
         <div>
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-            <img src="assets/logo.png?v=12" alt="VELoura Logo" style="height: 38px; border-radius: 6px;">
+            <img src="assets/logo.png?v=14" alt="VELoura Logo" style="height: 38px; border-radius: 6px;">
             <span style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800;">VELOURA</span>
           </div>
           <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; max-width: 320px;">
@@ -566,7 +566,7 @@
         </div>
         <h3 style="font-size: 1.4rem; margin-bottom: 16px;">Shipping & Contact Details</h3>
 
-        <form id="checkoutForm" onsubmit="return false;" style="display: flex; flex-direction: column; gap: 14px;">
+        <form id="checkoutForm" style="display: flex; flex-direction: column; gap: 14px;">
           <div>
             <label style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 4px;">Full Name</label>
             <input type="text" id="orderFullName" required class="studio-input" placeholder="e.g. Vignesh Sundaram">
@@ -676,8 +676,8 @@
   <div id="toastNotification" class="toast-popup"></div>
 
   <!-- Scripts -->
-  <script src="products-data.js?v=12"></script>
-  <script src="app.js?v=12"></script>
+  <script src="products-data.js?v=14"></script>
+  <script src="app.js?v=14"></script>
   <script>
     lucide.createIcons();
   </script>
