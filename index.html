@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=14">
+  <link rel="stylesheet" href="styles.css?v=24">
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -103,8 +103,9 @@
         </button>
 
         <!-- Mobile Menu Toggle Button -->
-        <button class="btn btn-outline btn-icon mobile-menu-btn" id="mobileMenuBtn" title="Toggle navigation menu" aria-label="Toggle navigation menu">
-          <i data-lucide="menu" id="mobileMenuIcon" style="width: 18px; height: 18px;"></i>
+        <button class="btn btn-outline btn-icon mobile-menu-btn" id="mobileMenuBtn" title="Toggle navigation menu" aria-label="Toggle navigation menu" aria-expanded="false">
+          <i data-lucide="menu" class="menu-icon-bars" style="width: 18px; height: 18px;"></i>
+          <i data-lucide="x" class="menu-icon-cross" style="width: 18px; height: 18px;"></i>
         </button>
       </div>
     </div>
@@ -231,12 +232,38 @@
           <input type="text" id="catalogSearchInput" class="studio-input" placeholder="Search by name (e.g. AI, QR, AR, Mood, Puzzle)..." style="padding-left: 42px;">
           <i data-lucide="search" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--text-muted);"></i>
         </div>
-        <select id="catalogSortSelect" class="studio-input" style="width: 170px; cursor: pointer;">
-          <option value="default">Catalogue Order</option>
-          <option value="price-low">Price: Low to High</option>
-          <option value="price-high">Price: High to Low</option>
-          <option value="rating">Top Rated</option>
-        </select>
+        <!-- Custom Luxury Sort Dropdown -->
+        <div class="custom-select-wrap" id="customSortDropdown">
+          <button type="button" class="custom-select-trigger" id="customSortTrigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort collection drops">
+            <span class="custom-select-label" id="customSortLabel">Catalogue Order</span>
+            <i data-lucide="chevron-down" class="custom-select-icon" style="width: 16px; height: 16px;"></i>
+          </button>
+          <ul class="custom-select-options" id="customSortOptions" role="listbox" aria-labelledby="customSortTrigger">
+            <li class="custom-select-option active" role="option" data-value="default" aria-selected="true">
+              <span>Catalogue Order</span>
+              <i data-lucide="check" class="opt-check-icon" style="width: 14px; height: 14px;"></i>
+            </li>
+            <li class="custom-select-option" role="option" data-value="price-low" aria-selected="false">
+              <span>Price: Low to High</span>
+              <i data-lucide="check" class="opt-check-icon" style="width: 14px; height: 14px;"></i>
+            </li>
+            <li class="custom-select-option" role="option" data-value="price-high" aria-selected="false">
+              <span>Price: High to Low</span>
+              <i data-lucide="check" class="opt-check-icon" style="width: 14px; height: 14px;"></i>
+            </li>
+            <li class="custom-select-option" role="option" data-value="rating" aria-selected="false">
+              <span>Top Rated</span>
+              <i data-lucide="check" class="opt-check-icon" style="width: 14px; height: 14px;"></i>
+            </li>
+          </ul>
+          <!-- Hidden fallback select for form/state compatibility -->
+          <select id="catalogSortSelect" style="display: none;" tabindex="-1" aria-hidden="true">
+            <option value="default">Catalogue Order</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Top Rated</option>
+          </select>
+        </div>
       </div>
 
       <!-- Products Grid -->
@@ -394,55 +421,58 @@
   <!-- Minimalist Luxury Footer -->
   <footer class="site-footer">
     <div class="container">
+      <!-- Centered Brand Identity -->
+      <div class="footer-brand-center">
+        <div class="footer-logo-wrap">
+          <img src="assets/logo.png?v=17" alt="VELoura Logo" class="footer-logo-img">
+          <span class="footer-brand-name">VELOURA</span>
+        </div>
+        <p class="footer-brand-desc">
+          Affordable Customized Streetwear. <br>
+          <strong>Made to Feel Like You.</strong> <br>
+          Super-Combed 220 GSM Bio-Washed Cotton.
+        </p>
+      </div>
+
       <div class="footer-top-grid">
+        <!-- Col 1: Shop -->
         <div>
-          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-            <img src="assets/logo.png?v=14" alt="VELoura Logo" style="height: 38px; border-radius: 6px;">
-            <span style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800;">VELOURA</span>
-          </div>
-          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; max-width: 320px;">
-            Affordable Customized Streetwear. <br>
-            <strong>Made to Feel Like You.</strong> <br>
-            Super-Combed 220 GSM Bio-Washed Cotton.
-          </p>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Top Drops</h4>
+          <h4 class="footer-col-title">Shop & Studio</h4>
           <ul class="footer-links">
-            <li><a href="#drops">AI Design Creator</a></li>
-            <li><a href="#drops">QR Code Memory Tee</a></li>
-            <li><a href="#drops">Interactive AR T-Shirt</a></li>
-            <li><a href="#drops">Group Design Builder</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Resources</h4>
-          <ul class="footer-links">
+            <li><a href="#drops">Top Drops</a></li>
             <li><a href="#studio">Creator Studio</a></li>
-            <li><a href="VELoura_Affordable_TShirt_Catalogue_Corrected (1).pdf" download="VELoura_Catalogue.pdf">Download PDF Catalogue</a></li>
-            <li><a href="#reviews">Reviews & Ratings</a></li>
+            <li><button type="button" id="footerSizeGuideBtn">Size Guide</button></li>
           </ul>
         </div>
 
+        <!-- Col 2: Policies -->
         <div>
-          <h4 class="footer-col-title">College Squad Inquiries</h4>
-          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px;">
-            Ordering for college symposium, fest or farewell squad?
-          </p>
-          <a href="https://wa.me/919876543210?text=Hi%20VELoura!%20Inquiring%20about%20custom%20squad%20bulk%20tees." target="_blank" class="btn btn-whatsapp btn-sm">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="display: inline-block; vertical-align: middle;">
+          <h4 class="footer-col-title">Policies & Info</h4>
+          <ul class="footer-links">
+            <li><button type="button" data-open-policy="about">About Us</button></li>
+            <li><button type="button" data-open-policy="privacy">Privacy Policy</button></li>
+            <li><button type="button" data-open-policy="shipping">Shipping & Returns</button></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Support -->
+        <div>
+          <h4 class="footer-col-title">Customer Support</h4>
+          <ul class="footer-links" style="margin-bottom: 12px;">
+            <li><a href="https://wa.me/919876543210" target="_blank">+91 98765 43210</a></li>
+            <li><a href="mailto:support@veloura.in">support@veloura.in</a></li>
+          </ul>
+          <a href="https://wa.me/919876543210?text=Hi%20VELoura!%20Inquiring%20about%20custom%20squad%20bulk%20tees." target="_blank" class="btn btn-whatsapp btn-sm" style="display: inline-flex; align-items: center; gap: 6px;">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
               <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2ZM12.04 20.15C10.56 20.15 9.11 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.68 12.04 3.68C14.25 3.68 16.31 4.54 17.87 6.1C19.43 7.66 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15ZM16.56 14.39C16.31 14.27 15.09 13.67 14.86 13.59C14.64 13.5 14.47 13.46 14.31 13.71C14.15 13.96 13.68 14.51 13.53 14.68C13.39 14.85 13.25 14.87 13 14.75C12.75 14.62 11.96 14.37 11.02 13.53C10.29 12.88 9.79 12.08 9.65 11.83C9.51 11.58 9.63 11.45 9.76 11.32C9.87 11.21 10.01 11.03 10.13 10.88C10.26 10.74 10.3 10.63 10.38 10.46C10.46 10.3 10.42 10.15 10.36 10.03C10.3 9.9 9.8 8.68 9.59 8.18C9.39 7.69 9.18 7.75 9.03 7.74C8.89 7.74 8.72 7.73 8.56 7.73C8.39 7.73 8.12 7.8 7.89 8.04C7.66 8.29 7.02 8.89 7.02 10.11C7.02 11.33 7.91 12.5 8.03 12.67C8.16 12.83 9.78 15.34 12.27 16.41C12.86 16.67 13.32 16.82 13.68 16.94C14.28 17.13 14.82 17.1 15.25 17.04C15.73 16.97 16.73 16.43 16.94 15.85C17.14 15.26 17.14 14.76 17.08 14.65C17.02 14.54 16.81 14.51 16.56 14.39Z"/>
             </svg>
-            <span>WhatsApp Bulk Desk</span>
+            <span>Squad Bulk Desk</span>
           </a>
         </div>
       </div>
 
       <div class="footer-bottom-bar">
-        <div>© 2026 VELoura Streetwear. All Rights Reserved.</div>
-        <div>All 16 Catalogue Drops • Student-Friendly Pricing</div>
+        <div>© 2026 VELoura Streetwear. All Rights Reserved. • Made to Feel Like You.</div>
       </div>
     </div>
   </footer>
@@ -665,6 +695,286 @@
     </div>
   </div>
 
+  <!-- In-App Luxury Brand & Legal Policy Modal -->
+  <div class="modal-wrapper" id="policyModal">
+    <div class="modal-content-box policy-modal-box">
+      <button class="modal-close-btn" id="closePolicyModalBtn" aria-label="Close modal">
+        <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="policy-modal-header">
+        <div>
+          <span class="pane-badge" style="margin-bottom: 4px;">Transparency & Care</span>
+          <h3 id="policyModalTitle">Brand Story & Store Policies</h3>
+        </div>
+      </div>
+
+      <!-- Scrollable Tab Strip -->
+      <div class="policy-modal-tabs-strip" role="tablist">
+        <button type="button" class="policy-modal-tab-btn active" data-tab-target="about" role="tab" aria-selected="true">
+          <i data-lucide="sparkles"></i>
+          <span>About VELoura</span>
+        </button>
+        <button type="button" class="policy-modal-tab-btn" data-tab-target="privacy" role="tab" aria-selected="false">
+          <i data-lucide="shield-check"></i>
+          <span>Privacy Policy</span>
+        </button>
+        <button type="button" class="policy-modal-tab-btn" data-tab-target="terms" role="tab" aria-selected="false">
+          <i data-lucide="file-text"></i>
+          <span>Terms of Service</span>
+        </button>
+        <button type="button" class="policy-modal-tab-btn" data-tab-target="shipping" role="tab" aria-selected="false">
+          <i data-lucide="truck"></i>
+          <span>Shipping & Delivery</span>
+        </button>
+        <button type="button" class="policy-modal-tab-btn" data-tab-target="returns" role="tab" aria-selected="false">
+          <i data-lucide="refresh-cw"></i>
+          <span>Returns & Refunds</span>
+        </button>
+        <button type="button" class="policy-modal-tab-btn" data-tab-target="contact" role="tab" aria-selected="false">
+          <i data-lucide="help-circle"></i>
+          <span>Contact & FAQs</span>
+        </button>
+      </div>
+
+      <!-- Modal Body Content -->
+      <div class="policy-modal-body">
+
+        <!-- 1. ABOUT US -->
+        <div class="policy-pane active" id="modal-pane-about" role="tabpanel">
+          <div class="policy-pane-header" style="margin-bottom: 20px;">
+            <span class="pane-badge">Brand Manifesto</span>
+            <h2 style="font-size: 1.4rem;">About VELoura — Made to Feel Like You</h2>
+            <p class="pane-tagline">Architectural luxury, heavyweight fabric science, and personalized streetwear crafted for the next generation.</p>
+          </div>
+
+          <div class="policy-prose">
+            <div class="policy-highlight-card">
+              <i data-lucide="award" class="highlight-card-icon"></i>
+              <div>
+                <h4>The VELoura Philosophy</h4>
+                <p>VELoura was founded to bridge the divide between flimsy fast-fashion tees and exorbitantly expensive luxury labels. We engineer bespoke, heavyweight 220 GSM garments tailored to feel like a second skin, priced affordably for creators and student squads.</p>
+              </div>
+            </div>
+
+            <h3>Fabric Engineering & Heavyweight Drape</h3>
+            <p>Every single VELoura garment is woven with <strong>100% Super-Combed Cotton</strong> weighing <strong>220 GSM (Grams per Square Metre)</strong>. Unlike lightweight high-street tees (140–160 GSM), our bio-washed fabric holds a structured architectural drape that flatters all frames and prevents see-through wear.</p>
+
+            <div class="policy-grid-cards">
+              <div class="policy-mini-card">
+                <div class="mini-card-badge">220 GSM</div>
+                <h4>Bio-Washed Finish</h4>
+                <p>Silicone enzyme treated to eliminate roughness, creating an ultra-soft velvety hand feel that resists fabric pilling.</p>
+              </div>
+              <div class="policy-mini-card">
+                <div class="mini-card-badge">Zero Shrinkage</div>
+                <h4>Pre-Shrunk Terry</h4>
+                <p>Heat-set and pre-shrunk before precision tailoring to guarantee consistent sizing wash after domestic wash.</p>
+              </div>
+              <div class="policy-mini-card">
+                <div class="mini-card-badge">HD Inks</div>
+                <h4>Direct-to-Film Mastery</h4>
+                <p>Japanese pigment printing produces vibrant, crack-resistant graphics with stretch recovery that outlasts standard screen prints.</p>
+              </div>
+            </div>
+
+            <h3>Interactive Clothing Pioneers</h3>
+            <p>Through our signature drops, we pioneered dynamic <strong>QR Code Memory Tees</strong> (linking to personal Spotify tracks, cloud drive memories, or symposium portals), <strong>WebAR 3D apparel</strong>, and AI-assisted typography so no two squads look generic.</p>
+          </div>
+        </div>
+
+        <!-- 2. PRIVACY POLICY -->
+        <div class="policy-pane" id="modal-pane-privacy" role="tabpanel">
+          <div class="policy-pane-header" style="margin-bottom: 20px;">
+            <span class="pane-badge">Data Protection</span>
+            <h2 style="font-size: 1.4rem;">Privacy Policy</h2>
+            <p class="pane-tagline">Last updated: September 2026. Fully aligned with Indian DPDP Act standards.</p>
+          </div>
+
+          <div class="policy-prose">
+            <div class="policy-highlight-card">
+              <i data-lucide="shield-check" class="highlight-card-icon"></i>
+              <div>
+                <h4>Zero Third-Party Data Selling</h4>
+                <p>VELoura values customer privacy. We collect only the essential details required to craft, print, and courier your customized apparel. <strong>We do not sell, rent, or trade your personal information or contact details to third-party brokers.</strong></p>
+              </div>
+            </div>
+
+            <h3>1. What Information We Collect</h3>
+            <ul class="policy-bullet-list">
+              <li><strong>Contact & Shipping Data:</strong> Full Name, WhatsApp phone number, delivery address, city, and pincode.</li>
+              <li><strong>Customization Content:</strong> Custom typography strings, uploaded graphic photos, or memory URLs provided within the Creator Studio for printing on your apparel.</li>
+              <li><strong>Transaction Records:</strong> Payment mode selected (UPI, Cards, COD) and transaction confirmation IDs. (Note: VELoura never stores card PINs or passwords).</li>
+              <li><strong>Local Storage:</strong> Cart item status, saved wishlist items, and studio canvas drafts stored locally on your device.</li>
+            </ul>
+
+            <h3>2. How Your Data Is Utilized</h3>
+            <ul class="policy-bullet-list">
+              <li>To accurately personalize, pack, and ship your apparel to your delivery address.</li>
+              <li>To transmit order status, consignment dispatch notices, and tracking alerts directly to your WhatsApp.</li>
+              <li>To verify customer support requests, replacements, or size inquiries.</li>
+            </ul>
+
+            <h3>3. Payment & Cloud Security</h3>
+            <p>Digital checkout is powered by bank-grade, PCI-DSS Level 1 compliant gateways using 256-bit SSL encryption. Uploaded images are stored securely during print production and never used for advertising without your written consent.</p>
+          </div>
+        </div>
+
+        <!-- 3. TERMS OF SERVICE -->
+        <div class="policy-pane" id="modal-pane-terms" role="tabpanel">
+          <div class="policy-pane-header" style="margin-bottom: 20px;">
+            <span class="pane-badge">Store Agreement</span>
+            <h2 style="font-size: 1.4rem;">Terms of Service</h2>
+            <p class="pane-tagline">Fair guidelines governing made-to-order printing, pricing, and cancellations.</p>
+          </div>
+
+          <div class="policy-prose">
+            <div class="policy-highlight-card">
+              <i data-lucide="file-check" class="highlight-card-icon"></i>
+              <div>
+                <h4>12-Hour Cancellation Window</h4>
+                <p>Because each garment is individually tailored and printed on-demand with your custom artwork or text, <strong>cancellations or design modifications must be submitted within twelve (12) hours of order placement</strong> before physical printing starts.</p>
+              </div>
+            </div>
+
+            <h3>1. User-Submitted Content & Intellectual Property</h3>
+            <p>By uploading artwork or text to our Creator Studio, you affirm that you own the rights or hold authorization to reproduce the design. VELoura reserves the right to decline print jobs containing hate speech, obscenity targeting minors, or unlawful intellectual property.</p>
+
+            <h3>2. Transparent Pricing & Promo Codes</h3>
+            <p>All catalogue items are listed in Indian Rupees (₹) inclusive of GST. Promotional codes (like <code>LAUNCH10</code>) must be applied prior to checkout.</p>
+
+            <h3>3. Digital vs Fabric Tolerances</h3>
+            <p>While our studio renderers simulate accurate placement, minor natural color variances (5–8%) can occur between illuminated phone displays and natural dyed cotton textiles under sunlight.</p>
+          </div>
+        </div>
+
+        <!-- 4. SHIPPING & DELIVERY -->
+        <div class="policy-pane" id="modal-pane-shipping" role="tabpanel">
+          <div class="policy-pane-header" style="margin-bottom: 20px;">
+            <span class="pane-badge">Logistics & Dispatch</span>
+            <h2 style="font-size: 1.4rem;">Shipping & Delivery Policy</h2>
+            <p class="pane-tagline">Fast pan-India fulfillment, live WhatsApp tracking, and free delivery thresholds.</p>
+          </div>
+
+          <div class="policy-prose">
+            <div class="policy-highlight-card">
+              <i data-lucide="truck" class="highlight-card-icon"></i>
+              <div>
+                <h4>Fulfillment & Delivery Timelines</h4>
+                <p>Custom Production: <strong>24 to 48 hours</strong> (Digital printing, heat curing, bio-wash finish, and QA inspection). <br>
+                Pan-India Transit: <strong>3 to 5 business days</strong> (Metro orders: 2 to 3 days).</p>
+              </div>
+            </div>
+
+            <div class="policy-grid-cards">
+              <div class="policy-mini-card">
+                <div class="mini-card-badge">Free Threshold</div>
+                <h4>Free Shipping Over ₹999</h4>
+                <p>All cart orders totaling ₹999 or more automatically receive 100% Free Express Delivery pan-India.</p>
+              </div>
+              <div class="policy-mini-card">
+                <div class="mini-card-badge">Flat ₹60</div>
+                <h4>Standard Delivery</h4>
+                <p>For orders under ₹999, a flat express shipping charge of ₹60 is applied at checkout.</p>
+              </div>
+              <div class="policy-mini-card">
+                <div class="mini-card-badge">Live Updates</div>
+                <h4>WhatsApp Status</h4>
+                <p>Live tracking consignment links and courier milestones are delivered right to your WhatsApp.</p>
+              </div>
+            </div>
+
+            <h3>Hostels & Campus Deliveries</h3>
+            <p>We deliver directly to college hostel gates, campus mailrooms, and university residential quarters. Please provide your hostel/room number for quick gate handovers.</p>
+          </div>
+        </div>
+
+        <!-- 5. RETURNS & REFUNDS -->
+        <div class="policy-pane" id="modal-pane-returns" role="tabpanel">
+          <div class="policy-pane-header" style="margin-bottom: 20px;">
+            <span class="pane-badge">Buyer Protection</span>
+            <h2 style="font-size: 1.4rem;">Returns & Refunds Policy</h2>
+            <p class="pane-tagline">7-Day Free Replacement Guarantee for print defects, fabric flaws, or transit damage.</p>
+          </div>
+
+          <div class="policy-prose">
+            <div class="policy-highlight-card">
+              <i data-lucide="refresh-cw" class="highlight-card-icon"></i>
+              <div>
+                <h4>7-Day Quality Replacement Guarantee</h4>
+                <p>If your t-shirt arrives with any stitching flaw, fabric tear, print error, or courier transit damage, we provide a 100% free immediate reprint or exchange.</p>
+              </div>
+            </div>
+
+            <h3>1. Personalized Garments</h3>
+            <p>Customized tees personalized with unique names, photos, or QR codes cannot be returned for simple change-of-mind. However, any physical flaw or printing inaccuracy is 100% protected under our 7-day guarantee.</p>
+
+            <h3>2. Zero-Friction WhatsApp Photo Verification</h3>
+            <p>No tedious courier return slips needed. Take a quick photo or video of the issue and send it to our <strong>WhatsApp Support Desk (+91 98765 43210)</strong> with your Order ID for instant dispatch approval.</p>
+
+            <h3>3. Refund Turnaround</h3>
+            <p>Where replacement is not viable, refunds are processed directly back to your original source account (UPI / Bank Account) within <strong>3 to 5 business days</strong>.</p>
+          </div>
+        </div>
+
+        <!-- 6. CONTACT & FAQS -->
+        <div class="policy-pane" id="modal-pane-contact" role="tabpanel">
+          <div class="policy-pane-header" style="margin-bottom: 20px;">
+            <span class="pane-badge">Customer Support</span>
+            <h2 style="font-size: 1.4rem;">Contact Us & FAQs</h2>
+            <p class="pane-tagline">Direct support for creators, individual orders, and college squads.</p>
+          </div>
+
+          <div class="policy-prose">
+            <div class="policy-contact-cards-row">
+              <div class="contact-card">
+                <i data-lucide="message-square" class="contact-icon"></i>
+                <h4>WhatsApp Desk</h4>
+                <p>Fast answers & order tracking.</p>
+                <a href="https://wa.me/919876543210" target="_blank" class="contact-link">+91 98765 43210</a>
+                <span class="contact-time">Mon – Sat, 10 AM – 8 PM</span>
+              </div>
+
+              <div class="contact-card">
+                <i data-lucide="mail" class="contact-icon"></i>
+                <h4>Email Support</h4>
+                <p>Order queries & collaborations.</p>
+                <a href="mailto:support@veloura.in" class="contact-link">support@veloura.in</a>
+                <span class="contact-time">Reply within 12h</span>
+              </div>
+
+              <div class="contact-card">
+                <i data-lucide="users" class="contact-icon"></i>
+                <h4>Squad Bulk Desk</h4>
+                <p>Symposium & farewell orders.</p>
+                <a href="https://wa.me/919876543210?text=Hi%20VELoura!%20Inquiring%20about%20college%20squad%20bulk%20tees." target="_blank" class="contact-link">Bulk Squad Desk</a>
+                <span class="contact-time">Special squad discounts</span>
+              </div>
+            </div>
+
+            <h3 style="margin-top: 28px;">Common Questions</h3>
+            <div class="policy-faq-list">
+              <div class="policy-faq-card">
+                <h4>Q: How should I wash my 220 GSM VELoura tee?</h4>
+                <p>Machine wash cold (under 30°C) inside out with mild detergent. Do not bleach or tumble dry. Never iron directly on printed graphics or QR badges.</p>
+              </div>
+              <div class="policy-faq-card">
+                <h4>Q: Will the QR code on the Memory Tee work after multiple washes?</h4>
+                <p>Yes! Our high-density Japanese DTF pigments are sealed with protective silicone coatings, maintaining high scannability even after 40+ washes.</p>
+              </div>
+              <div class="policy-faq-card">
+                <h4>Q: Can we order custom tees for our college fest or symposium?</h4>
+                <p>Yes! We offer tiered squad discounts for orders of 10+ tees with complimentary 3D mockup proofs and dedicated campus delivery.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <!-- Floating WhatsApp Direct Chat Widget (Icon Only) -->
   <a href="https://wa.me/919876543210?text=Hi%20VELoura!%20Interested%20in%20custom%20t-shirts." target="_blank" class="floating-whatsapp-widget" title="Direct WhatsApp Support" aria-label="WhatsApp Support">
     <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
@@ -676,8 +986,8 @@
   <div id="toastNotification" class="toast-popup"></div>
 
   <!-- Scripts -->
-  <script src="products-data.js?v=14"></script>
-  <script src="app.js?v=14"></script>
+  <script src="products-data.js?v=24"></script>
+  <script src="app.js?v=24"></script>
   <script>
     lucide.createIcons();
   </script>
